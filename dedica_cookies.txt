@@ -1,0 +1,13 @@
+# Netscape HTTP Cookie File
+
+www.dedica.live	FALSE	/	TRUE	0	crumb	placeholder
+www.dedica.live	FALSE	/	TRUE	1788645975	SiteUserSecureAuthToken	placeholder
+www.dedica.live	FALSE	/	FALSE	1788645975	SiteUserInfo	placeholder
+www.dedica.live	FALSE	/	TRUE	1788645975	siteUserCrumb	placeholder
+www.dedica.live	FALSE	/	TRUE	1695247576	CART	placeholder
+www.dedica.live	FALSE	/	TRUE	1695247576	hasCart	true
+.dedica.live	TRUE	/	FALSE	1757109981	_ga_X4365132477	placeholder
+.dedica.live	TRUE	/	FALSE	1757109981	_ga	placeholder
+www.dedica.live	FALSE	/	FALSE	1757109981	ss_cvr	placeholder
+www.dedica.live	FALSE	/	FALSE	1694039781	ss_cvt	placeholder
+.dedica.live	TRUE	/	FALSE	1701813982	_fbp	placeholder
