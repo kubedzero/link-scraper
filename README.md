@@ -28,6 +28,31 @@ Challenges
 - I then used Sublime to get all the Vimeo URLs and put them in a separate text file, one URL per line. I could then run `yt-dlp --batch-file ~/GitHub/kubedzero/link-scraper/vimeos.txt` to fetch the videos. 
 - There were some videos that needed the full URL, so not just `https://player.vimeo.com/video/723170274` but actually `https://player.vimeo.com/video/727178556?h=777871a737&app_id=122963`. Otherwise, `yt-dlp` would throw an error such as `ERROR: [vimeo] 721786316: Unable to download webpage: HTTP Error 404: Not Found` and sure enough I'd get a 404 in-browser when trying to navigate to that page
 
+## 2024-03 Re-scraping Dea
+- Dea's posted some new videos so I wanted to grab those
+- I logged in in Firefox and used the extension to export the cookies
+- I confirmed that the videos didn't extend beyond the offset=200 page, meaning the two existing URLs should be sufficient
+- I toggled the "read-from-dict" to false so it gets the live web page and then let it run for 20m or so to get all the links. New count is 254, previous count was 231, so 33 videos added
+- I had to format the output dict as it comes out by default as one line, but multiple lines make it easier for Git. I ran `jq . dedica_class_video_dict.json > clean.json && mv dedica_class_video_dict.json unclean.json && mv clean.json dedica_class_video_dict.json` to fix it
+- There were 35 errors in the log output, all `Error 'NoneType' object has no attribute 'get'` with matching null values in the JSON dict output. However, using Git's diff, I found 90% of them were URLs I had already gotten so I just loaded them in from the old commit. The remaining files were new, so I went to each URL and inspected the page to pull out the URL
+- I then used Sublime to parse out all the video URLs from the JSON and put them into a `videos.txt` file, one URL per line
+- I then used `yt-dlp --batch-file ~/GitHub/kubedzero/link-scraper/videos.txt` to download the files, using the default `yt-dlp` config I set up at another time.
+```
+--embed-subs
+--embed-thumbnail
+--embed-metadata
+--embed-chapters
+--restrict-filenames
+--console-title
+--paths "~/Movies/"
+--no-overwrites
+--no-post-overwrites
+--download-archive "~/Terminal/yt-dlp-archive.txt"
+```
+- I got an error from the Youtube links `WARNING: [youtube] YouTube said: ERROR - Precondition check failed` and Github says to just update yt-dlp https://github.com/yt-dlp/yt-dlp/issues/9316
+- Everything ended up succeeding other than Bodea 38 Slow & Intentional, https://www.dedica.live/on-deamand-library/v/pp335s77x54fggxz5y7xedzdzwhjnh https://player.vimeo.com/video/721786316 which shows up on the library page but upon clicking a "Sorry this video doesn't exist" is seen
+- And that's it! 32 new videos totalling 60.3GB and one that couldn't be downloaded
+
 ## Resources
 
 - Create a HashSet in Python with `variable = set()` https://stackoverflow.com/questions/26724002/contains-of-hashsetinteger-in-python
