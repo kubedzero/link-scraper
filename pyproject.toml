@@ -1,0 +1,10 @@
+[project]
+name = "link-scraper"
+version = "0.1.0"
+description = "Python3 and BeautifulSoup 4 web scraper"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "requests>=2.32.5",
+]
